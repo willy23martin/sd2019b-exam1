@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 
 // Creates an api Web Server application:
 var apiService = express();
-var port = 7894;
+var port = 443;
 
 // API endpoints:
 var apiEndpoints = require('./routes/routes');

@@ -14,14 +14,14 @@ var operativeSystem = require('os');
 var networkInterfaces = operativeSystem.networkInterfaces();
 var apiServiceLocation = {
     apiServiceName: operativeSystem.hostname(),
-    apiServiceAddress: networkInterfaces[IPv4networkInterface][1].address
+    apiServiceAddress: '192.168 .1 .50'
 };
 
 /**
  * Define the controller functions that will serve as the action listeners to respond to API requests.
  */
 var controller = {
-    microservice: function (req, res) {
+    microservice: function(req, res) {
         var microserviceId = req.params.microserviceId;
         return res.status(200).send({
             "status": "200 OK",
@@ -29,11 +29,11 @@ var controller = {
             "webServerLocation": apiServiceLocation
         });
     },
-    users: function (req, res) {
+    users: function(req, res) {
         console.log('Consultando los usuarios...')
-        // Connect to database:
-        //connection.connect();
-        connection.query('SELECT * FROM `users`', function (error, results, fields) {
+            // Connect to database:
+            //connection.connect();
+        connection.query('SELECT * FROM `users`', function(error, results, fields) {
             if (error) {
                 throw error;
             } else {
@@ -48,14 +48,14 @@ var controller = {
         });
         //connection.end();
     },
-    createUser: function (req, res) {
+    createUser: function(req, res) {
         console.log('Consultando los usuarios...')
-        // Connect to database:
-        //connection.connect();
+            // Connect to database:
+            //connection.connect();
         var userId = parseInt(req.body.id, 10);
         var username = req.body.name;
         var insertSQLStatement = `INSERT INTO users (\` user_id\`, name) VALUES (${userId},'${username}')`;
-        connection.query(insertSQLStatement, function (error, results, fields) {
+        connection.query(insertSQLStatement, function(error, results, fields) {
             if (error) {
                 throw error;
             } else {
@@ -68,6 +68,15 @@ var controller = {
                 });
             }
         });
+    },
+    getCustomerInfo: function(req, res) {
+        console.log(`Consultando la información del cliente: ${req.params.cedula} ...`);
+        return res.status(200).send({
+            "telephonyProvider": {
+                "name": "KONECTA"
+            }
+        });
+        //connection.end();
     }
 };
 

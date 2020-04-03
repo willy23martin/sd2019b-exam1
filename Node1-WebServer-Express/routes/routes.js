@@ -9,5 +9,6 @@ var apiEndpoint = express.Router();
 apiEndpoint.get('/microservices/:microserviceId', apiController.microservice);
 apiEndpoint.get('/users', apiController.users);
 apiEndpoint.post('/users/user', apiController.createUser);
+apiEndpoint.get('/WsCampanas/servicios/temporal/:cedula', apiController.getCustomerInfo);
 
 module.exports = apiEndpoint;
