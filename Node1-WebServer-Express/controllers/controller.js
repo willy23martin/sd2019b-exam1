@@ -76,8 +76,35 @@ var controller = {
                 "name": "KONECTA"
             }
         });
-        //connection.end();
+    },
+    insertarIlocalizados: function(req, res) {
+        var existeCliente = (req.body.datos[2].propiedad == "id_cliente");
+        var idCliente = req.body.datos[2].valor;
+        console.log(`Reportando la información del contacto ilocalizado con id_cliente: ${idCliente}`);
+        if (existeCliente) {
+            return res.status(200).send({
+                "data": {
+                    "id_respuesta": "11",
+                    "mensaje": `El contacto ilocalizado ${idCliente} se registra sin inconvenientes`,
+                    "codigo": 0,
+                    "estado": "OK"
+                }
+            });
+        } else {
+            return res.status(500).send({
+                "data": {
+                    "id_respuesta": "11",
+                    "mensaje": `El contacto ilocalizado ${idCliente} no se registró`,
+                    "codigo": parseInt(Math.random() * (2 - 0 + 1) + 0),
+                    "estado": "FAILED"
+                }
+            });
+        }
+
     }
+
 };
+
+// Reference https://futurestud.io/tutorials/generate-a-random-number-in-range-with-javascript-node-js
 
 module.exports = controller;

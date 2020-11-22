@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 
 // Creates an api Web Server application:
 var apiService = express();
-var port = 443;
+var port = 3042;
 
 // API endpoints:
 var apiEndpoints = require('./routes/routes');
@@ -31,7 +31,7 @@ apiService.use((req, res, next) => {
 });
 
 // API Host URL and API endpoints:
-apiService.use('/api/sd2019bExam1/', apiEndpoints);
+apiService.use('/ILocalizados/ILocalizados', apiEndpoints);
 
 // Start the API Service
 apiService.listen(port, () => {
